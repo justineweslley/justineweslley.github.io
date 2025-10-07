@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .card {
+            background-color: #FAF3F9;
+            border-radius: 20px;
+            /* width: 300px; */
+            margin: 20px;
+            text-align: center;
+            padding: 20px;
+            /* box-shadow: 0px 8px 30px rgba(243, 109, 205, 0.9); */
+        }
+
+        .profile-card {
+            width: 100%;
+            max-width: 320px;
+            /* margin: 0 auto; */
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+
+        .text-pink {
+            color: #e061ab;
+        }
+
+        .inria-serif {
+            font-family: 'Inria Serif', 'serif';
+            font-weight: bold;
+        }
+
+        /* badge */
+        .student-badge {
+            display: inline-block;
+            background-color: white;
+            color: #d08cb3;
+            font-family: 'Inria Serif', 'serif';
+            font-weight: bold;
+            padding: 5px 8px;
+            border-radius: 20px;
+            margin: 5px 0;
+            box-shadow: 0px 2px 6px rgba(243, 109, 205, 0.3);
+
+        }
+
+        /* contact */
+        .contact-text,
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d08cb3;
+            font-family: 'Inria Serif', serif;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+            font-size: 16px;
+            flex-wrap: wrap;
+            word-break: break-all;
+        }
+
+        .hello-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e061ab;
+            font-family: 'Inria Serif', serif;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .contact-row svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin: 0;
+        }
+
+        .about-me-text {
+            text-align: justify;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: #d08cb3;
+            font-family: 'Inria Serif', serif;
+            font-weight: light;
+        }
+
+        .contact-row a {
+            color: #d08cb3;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-row a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-pink {
+            background-color: #dd78b3;
+            color: white;
+            border: none;
+            font-family: 'Inria Serif', serif;
+            box-shadow: 0 4px 10px rgba(208, 140, 179, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn-pink:hover {
+            background-color: #d08cb3;
+            color: #652349;
+            box-shadow: 0 6px 14px rgba(208, 140, 179, 0.6);
+        }
+
+        .btn-pink:active {
+            background-color: #c06ca1;
+            box-shadow: 0 2px 6px rgba(208, 140, 179, 0.5);
+            transform: translateY(2px);
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 250px;
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+            margin: auto;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(243, 109, 205, 0.3);
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            font-family: 'Inria Serif', serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .flip-card-front {
+            background-color: #f6dfec;
+            color: rgb(172, 113, 162);
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .flip-card-back {
+            background-color: #d08cb3;
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 16px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 15px;
+        }
+
+        .flip-card-back p {
+            margin: 2px 0;
+            line-height: 1.2;
+            font-size: 14px;
+        }
+
+
+        .flip-card-front:hover {
+            background-color: #d08cb3;
+            color: white;
+        }
+
+        .flip-card-back:hover {
+            background-color: #dd78b3;
+        }
+
+        .flip-card-back:hover p {
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .icon-top {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .flip-card-front svg {
+            color: inherit;
+        }
+
+        .collapse {
+            display: none;
+            /* hide by default */
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .collapse.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 1400px) {
+
+
+            /* card stack */
+            .row.g-3.align-items-start {
+                flex-direction: column;
+            }
+
+            /* cards full width */
+            .card.profile-card,
+            .card.shadow {
+                max-width: 100%;
+                width: 100%;
+                margin: 0 auto 20px;
+            }
+
+            /* content in profile card */
+            .profile-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+                gap: 1.5rem;
+            }
+
+            /* profile*/
+            .profile-left {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            /* contact info */
+            .profile-right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 10px;
+            }
+
+            .text-pink.inria-serif {
+                font-size: 1.4rem;
+            }
+
+            .student-badge {
+                font-size: 0.9rem;
+                padding: 5px 15px;
+                margin-bottom: 15px;
+            }
+
+            .contact-row {
+                font-size: 15px;
+                gap: 6px;
+            }
+
+            .contact-row svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        [data-bs-theme="dark"] {
+            background-color: #1c1b1f !important;
+            color: #f5f5f5 !important;
+        }
+
+        [data-bs-theme="dark"] .card {
+            background-color: #2a2a2d !important;
+            color: #f5f5f5 !important;
+        }
+
+        [data-bs-theme="dark"] .text-pink {
+            color: #f1b6e2 !important;
+        }
+
+        [data-bs-theme="dark"] .btn-pink {
+            background-color: #3a3a3f !important;
+            color: #f1b6e2 !important;
+            border: 1px solid #f1b6e2;
+        }
+
+        [data-bs-theme="dark"] .btn-pink:hover {
+            background-color: #f1b6e2 !important;
+            color: #2a2a2d !important;
+        }
+
+        [data-bs-theme="dark"] #darkModeBtn {
+            background-color: #f1b6e2 !important;
+            color: #2a2a2d !important;
+        }
+
+        [data-bs-theme="dark"] .student-badge {
+            background-color: #3a3a3f !important;
+            color: #f1b6e2 !important;
+            border: 1px solid #f1b6e2;
+            box-shadow: 0 2px 6px rgba(241, 182, 226, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container mt-5">
+        <div class="row g-3 align-items-start">
+            <div class="col-12 col-xxl-3">
+                <div class="card profile-card shadow">
+                    <div class="profile-header"> 
+                        <!-- Left half -->
+                        <div class="profile-left">
+                            <div class="profile-pic mt-3"></div>
+                            <h3 class="text-pink inria-serif">Justine Weslley</h3>
+                            <p class="student-badge col-7 mb-5 mt-2 mx-auto">BSIT Student</p>
+                        </div> 
+                        <!-- contact -->
+                        <div class="profile-right">
+                            <div class="contact-row"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-envelope-paper-heart" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1.133l.941.502A2 2 0 0 1 16 5.4V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.4a2 2 0 0 1 1.059-1.765L2 3.133zm0 2.267-.47.25A1 1 0 0 0 1 5.4v.817l1 .6zm1 3.15 3.75 2.25L8 8.917l1.25.75L13 7.417V2a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1zm11-.6 1-.6V5.4a1 1 0 0 0-.53-.882L14 4.267zM8 2.982C9.664 1.309 13.825 4.236 8 8 2.175 4.236 6.336 1.31 8 2.982m7 4.401-4.778 2.867L15 13.117zm-.035 6.88L8 10.082l-6.965 4.18A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738ZM1 13.116l4.778-2.867L1 7.383v5.734Z" />
+                                </svg> <a href="mailto:justineweslley.0@gmail.com">justineweslley.0@gmail.com</a> </div>
+                            <div class="contact-row"> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    class="bi bi-facebook" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                                </svg> <a href="https://www.facebook.com/share/1HEpfPV3SR/?mibextid=wwXIfr"
+                                    target="_blank">Justine Weslley</a> </div>
+                            <div class="contact-row"> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    class="bi bi-instagram" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                                </svg> <a
+                                    href="https://www.instagram.com/justineweslley?igsh=MWI3eWlxNzlmcWYzOA%3D%3D&utm_source=qr"
+                                    target="_blank">@justineweslley</a> </div>
+                            <div class="contact-row"> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    class="bi bi-telephone" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+                                </svg> <a href="tel:+63999999999">09999999999</a> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xxl-9">
+                <div class="card shadow">
+                    <button id="darkModeBtn" class="btn btn-pink position-absolute  top-0 end-0 m-3">
+                        ⏾
+                    </button>
+                    <div class="hello-text">Hello there!</div>
+                    <div class="about-me-text">
+                        <p> My name is Justine Weslley. I am twenty years old and a third-year BSIT student at the
+                            Polytechnic University of the Philippines. I see the world in colors, shapes, and letters,
+                            and I love turning the ideas in my head into something I can see on the screen. I am still
+                            learning, still discovering the little ways to make things better. Plans do not always go as
+                            I imagine, but I find joy in solving the puzzles and watching each small improvement take
+                            shape. </p>
+                        <p> I explore coding and programming as another way to bring my ideas to life. I like trying
+                            different ways to make things work and seeing my ideas take shape. Every small step is still
+                            a step, and every little progress counts. I also pay attention to how things are arranged,
+                            so my work is neat, clear, and easy to understand. </p>
+                        <p> This portfolio is a part of my story. It shows what I enjoy, what I am learning, and how I
+                            approach IT and design. It carries my curiosity, my patience, and my creativity. It tells
+                            how I experiment with new ideas and how I keep growing, little by little. I want to keep
+                            creating, discovering, and finding new ways to make my work shine as I grow in this field.
+                        </p>
+                    </div> 
+                    <!-- collapsible content -->
+                    <div class="d-flex gap-2 mb-3"> <button class="btn btn-pink" id="skillsBtn">Skills</button> <button
+                            class="btn btn-pink" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#projectsContent" aria-expanded="false" aria-controls="projectsContent">
+                            Projects </button> </div> 
+                            <!-- Skills Cards -->
+                    <div id="skillsContent"
+                        style="display: none; flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 1rem;">
+                        <!-- Programming & Coding -->
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="icon-top"> <svg xmlns="http://www.w3.org/2000/svg" width="32"
+                                            height="32" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+                                            <path
+                                                d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5" />
+                                        </svg> </div> Programming & Coding
+                                </div>
+                                <div class="flip-card-back">
+                                    <p>- Python</p>
+                                    <p>- C & C++</p>
+                                    <p>- Java</p>
+                                    <p>- HTML</p>
+                                    <p>- CSS</p>
+                                    <p>- PHP</p>
+                                    <p>- MySQL</p>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- Design & Creative -->
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="icon-top"> <svg xmlns="http://www.w3.org/2000/svg" width="32"
+                                            height="32" fill="currentColor" class="bi bi-pencil-square"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                            <path fill-rule="evenodd"
+                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                                        </svg> </div> Design & Creative
+                                </div>
+                                <div class="flip-card-back">
+                                    <p>- Figma</p>
+                                    <p>- Canva</p>
+                                    <p>- Photoshop</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Soft Skills -->
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="icon-top"> <svg xmlns="http://www.w3.org/2000/svg" width="32"
+                                            height="32" fill="currentColor" class="bi bi-chat-heart"
+                                            viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M2.965 12.695a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2m-.8 3.108.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125M8 5.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+                                        </svg> </div> Soft Skills
+                                </div>
+                                <div class="flip-card-back">
+                                    <p>- Problem-solving</p>
+                                    <p>- Debugging</p>
+                                    <p>- Logical thinking</p>
+                                    <p>- Teamwork</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script>
+        const skillsBtn = document.getElementById('skillsBtn');
+        const skillsContent = document.getElementById('skillsContent');
+        const projectsBtn = document.querySelector('[data-bs-target="#projectsContent"]')
+        skillsBtn.addEventListener('click', () => {
+            if (skillsContent.style.display === "none" || skillsContent.style.display === "") {
+                skillsContent.style.display = "flex";
+            } else {
+                skillsContent.style.display = "none";
+            }
+        });
+
+
+        projectsBtn.addEventListener('click', () => {
+            skillsContent.style.display = "none";
+        });
+
+        // toggle dark mde
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        const htmlEl = document.documentElement;
+
+        // load saved preference
+        if (localStorage.getItem('theme') === 'dark') {
+            htmlEl.setAttribute('data-bs-theme', 'dark');
+            darkModeBtn.textContent = '☼';
+        }
+
+        darkModeBtn.addEventListener('click', () => {
+            const isDark = htmlEl.getAttribute('data-bs-theme') === 'dark';
+            htmlEl.setAttribute('data-bs-theme', isDark ? 'light' : 'dark');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            darkModeBtn.textContent = isDark ? '⏾' : '☼';
+
+        });
+
+    </script>
+</body>
+
+
+</html>
