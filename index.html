@@ -284,7 +284,7 @@
                 display: flex;
                 flex-direction: column;
                 /* align-items: center; */
-                /* padding-left: 40px: */
+                padding-left: 40px;
                 /* text-align: center; */
                 gap: 12px;
             }
@@ -297,13 +297,13 @@
             }
 
             .text-pink.inria-serif {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
 
             .student-badge {
                 font-size: 0.9rem;
                 padding: 5px 15px;
-                margin-bottom: 15px;
+                margin-bottom: 5px;
             }
 
             .contact-row {
@@ -316,6 +316,102 @@
                 height: 18px;
             }
         }
+
+        @media (max-width: 1000px)
+    {
+        .profile-card{
+            padding: 0;
+        }
+        /* card stack */
+        .row.g-3.align-items-start {
+            flex-direction: column;
+        }.profile-left {
+                margin-top: 0;
+                padding:0;
+            }
+
+            .profile-right {
+                margin-top:0;
+                padding:0;
+            }
+
+            .profile-pic {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 5px;
+                margin-top: 5px;
+            }
+
+            .text-pink.inria-serif {
+                font-size: 1rem;
+            }
+
+            .student-badge {
+                font-size: 0.9rem;
+                width: 120px;
+                padding: 1;
+                margin-bottom: 5px;
+            }
+
+            .contact-row {
+                font-size: 13px;
+                margin-bottom: 7px;
+            }
+
+            .contact-row svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* card stack */
+            .row.g-3.align-items-start {
+                flex-direction: column;
+            }
+
+            .profile-left {
+                margin-top: 0;
+                padding:0;
+            }
+
+            .profile-right {
+                margin-top:0;
+                padding:0;
+            }
+
+            .profile-pic {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 5px;
+                margin-top: 5px;
+            }
+
+            .text-pink.inria-serif {
+                font-size: 1rem;
+            }
+
+            .student-badge {
+                font-size: 0.9rem;
+                width: 120px;
+                padding: 1;
+                margin-bottom: 5px;
+            }
+
+            .contact-row {
+                font-size: 10px;
+                margin-bottom: 4px;
+            }
+
+            .contact-row svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+
+
 
         [data-bs-theme="dark"] {
             background-color: #1c1b1f !important;
